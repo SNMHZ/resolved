@@ -8,7 +8,6 @@ using namespace std;
 int solution(vector<int> scoville, int K) {
     int answer = 0;
     int temp;
-    int count=0;
 
     make_heap(scoville.begin(), scoville.end(), greater<int>());
     
