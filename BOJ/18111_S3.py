@@ -1,6 +1,6 @@
 # 타임아웃과의 싸움
 # PyPy3
-# Python3는 타임아웃 ㅋ
+# Python3는 타임아웃 ㅋ;
 
 import sys
         
