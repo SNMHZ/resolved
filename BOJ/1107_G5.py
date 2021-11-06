@@ -1,40 +1,47 @@
+#brute-force도 우아하게 짤 수 있을까..?
+
 import sys
 
-N = sys.stdin.readline()[:-1]
-sys.stdin.readline()
-disables = sys.stdin.readline().split()
+N = int(sys.stdin.readline())
+M = int(sys.stdin.readline())
+if M==0:
+    disables=[]
+else:
+    disables = sys.stdin.readline().split()
 
-minimum = abs(int(N)-100)
-
-low, high = None, None
-for i in range(10):
-    if str(i) not in disables:
-        low = i
-        break
-for i in range(9, -1, -1):
-    if str(i) not in disables:
-        high = i
-        break
-
-m_str = ''
-for c in N:
-    if c not in disables:
-        m_str+=c
-    else:
-        cur = c
-        check_big = m_str
-        while cur != '9':
-            cur = chr(ord(cur)+1)
-            if cur not in disables:
-                check_big+=cur
-                check_big+=(len(N)-len(check_big))*str(low)
-                print(check_big)
-                break
-        if c == '9':
-            
-
-        break
+if N-100==0:
+    print(0)
+elif M==10:
+    print(abs(N-100))
+else:
+    disable_dict = {}
+    for i in range(10):
+        if str(i) not in disable_dict:
+            disable_dict[str(i)] = False
+    for dis in disables:
+        disable_dict[dis] = True
+    every_num_disabled = True
+    for i in range(1, 10):
+        every_num_disabled = every_num_disabled and disable_dict[str(i)]
     
-    print(c)
+    if every_num_disabled:
+        print( min( abs(N-100), abs(N-0)+1 ) )
+    else:
+        def isMakeable(num: int):
+            for c in str(num):
+                if disable_dict[c]:
+                    return False
+            return True
 
-print(N, disables)
+        upN = N
+        while not isMakeable(upN):
+            upN+=1
+
+        downN = N
+        while not isMakeable(downN):
+            downN-=1
+            if downN < 0:
+                downN = float('inf')
+                break
+
+        print( min( abs(N-100), abs(N-upN)+len(str(upN)), abs(N-downN)+len(str(downN))) )
