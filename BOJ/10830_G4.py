@@ -1,7 +1,8 @@
 import sys
 
-N = int(sys.stdin.readline())
-A = [[1,1],[1,0]]
+N, B = map(int, sys.stdin.readline().split())
+A = [ list(map(int, sys.stdin.readline().split())) for _ in range(N) ]
+
 
 def matrix_mul(A, B):
     C = [[0]*len(B[0]) for _ in range(len(A))]
@@ -9,7 +10,7 @@ def matrix_mul(A, B):
         for j in range(len(B[0])):
             for k in range(len(B)):
                 C[i][j] += A[i][k] * B[k][j]
-            C[i][j] %= 1000000007
+            C[i][j] %= 1000
     return C
 
 def matrix_power(mat, n, start):
@@ -23,7 +24,7 @@ def matrix_power(mat, n, start):
         res = matrix_mul(res, start)
     return res
 
-if N == 1:
-    print(1)
-else:
-    print(matrix_power(A, N-1, A)[0][0])
+ans = matrix_power(A, B, A)
+
+for i in range(len(ans)):
+    print(*list(map(lambda x: x%1000, ans[i])))
