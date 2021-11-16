@@ -13,18 +13,18 @@ def matrix_mul(A, B):
             C[i][j] %= 1000
     return C
 
-def matrix_power(mat, n, start):
+def matrix_power(mat, n):
     if n == 1:
         return mat
 
-    a = matrix_power(mat, n//2, start)
+    a = matrix_power(mat, n//2)
     res = matrix_mul(a, a)
 
     if n % 2 == 1:
-        res = matrix_mul(res, start)
+        res = matrix_mul(res, mat)
     return res
 
-ans = matrix_power(A, B, A)
+ans = matrix_power(A, B)
 
 for i in range(len(ans)):
     print(*list(map(lambda x: x%1000, ans[i])))

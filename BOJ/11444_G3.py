@@ -12,18 +12,18 @@ def matrix_mul(A, B):
             C[i][j] %= 1000000007
     return C
 
-def matrix_power(mat, n, start):
+def matrix_power(mat, n):
     if n == 1:
         return mat
 
-    a = matrix_power(mat, n//2, start)
+    a = matrix_power(mat, n//2)
     res = matrix_mul(a, a)
 
     if n % 2 == 1:
-        res = matrix_mul(res, start)
+        res = matrix_mul(res, mat)
     return res
 
 if N == 1:
     print(1)
 else:
-    print(matrix_power(A, N-1, A)[0][0])
+    print(matrix_power(A, N-1)[0][0])
