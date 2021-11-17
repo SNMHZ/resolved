@@ -18,6 +18,7 @@ def main():
             sum += cable//mid
             if sum >= K:
                 low = mid + 1
+                break
         if sum < K:
             high = mid - 1
     print(high)
