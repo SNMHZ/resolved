@@ -17,4 +17,4 @@ for i in range(1, N):
             dp[i][k][j] += dp[i-1][k-1][j]%mod
             dp[i][k][j] += dp[i-1][k+1][j]%mod
 
-print(sum([ i[0b11] for i in dp[N-1]])%mod)
+print(sum([ i[0b11] for i in dp[N-1] ])%mod)
