@@ -19,3 +19,9 @@
 |1181|value 기준 비교 함수. cmp_to_key|
 |1654|이분탐색 활용|
 |10830,11444|matrix곱, matrix제곱. 실전에선 numpy쓸듯..?|
+
+<br><br>
+
+---
+
+[![Solved.ac](http://mazassumnida.wtf/api/v2/generate_badge?boj=snmhz325)](https://solved.ac/snmhz325)
