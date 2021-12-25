@@ -51,13 +51,13 @@ for i in range(N):
     else:
         _count[parent[i]] += 1
 
-_heap = [ sum(sorted(list(_set[i]))[:_count[i]]) for i in range(size+1) ]
-# for i in range(size+1):
-#     heapq.heapify(_heap[i])
+_heap = [ list(_set[i]) for i in range(size+1) ]
+for i in range(size+1):
+    heapq.heapify(_heap[i])
 
-# width_sum = 0
-# for i in range(size+1):
-#     for iter in range(_count[i]):
-#         width_sum += heapq.heappop(_heap[i])
+width_sum = 0
+for i in range(size+1):
+    for iter in range(_count[i]):
+        width_sum += heapq.heappop(_heap[i])
 
-print(_sum - sum(_heap))
+print(_sum - width_sum)

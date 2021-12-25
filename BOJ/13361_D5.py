@@ -1,63 +1,54 @@
 import sys
-import heapq
-
+sys.setrecursionlimit(250000)
 N = int(sys.stdin.readline())
 data = [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
 
-graph = {}
+parent = [i for i in range(N*2)]
+def find(x):
+    if parent[x] == x:
+        return x
+    parent[x] = find(parent[x])
+    return parent[x]
+
+def union(x, y):
+    x = find(x)
+    y = find(y)
+    if x == y:
+        return
+    if parent[x] < parent[y]:
+        parent[x] = y
+    else:
+        parent[y] = x
+
 _sum = 0
+val = []
+val_idx = {}
+_count = [0]*(N*2)
 for i in range(N):
     x, y = data[i]
-    graph[x] = graph.get(x, []) + [i]
-    graph[y] = graph.get(y, []) + [i]
+    if x not in val_idx:
+        val_idx[x] = len(val)
+        val.append(x)
+
+    if y not in val_idx:
+        val_idx[y] = len(val)
+        val.append(y)
+
+    union(val_idx[x], val_idx[y])
+
+    _count[find(val_idx[x])] += 1
     _sum += x + y
 
-parent = [-1 for _ in range(N)]
-# print(graph)
-size = -1
-_set = []
-_count = []
-for i in range(N):
-    if parent[i] == -1:
-        size += 1
-        _set.append(set())
-        _count.append(1)
-
-        x, y = data[i]
-        parent[i] = size
-
-        st = []
-
-        _set[size].add(x)
-        #st += graph[x]
-        st.extend(graph[x])
-        if y not in _set[size]:
-            _set[size].add(y)
-            #st += graph[y]
-            st.extend(graph[y])
-
-        while st:
-            node = st.pop()
-            parent[node] = size
-            cur_x, cur_y = data[node]
-            if cur_x not in _set[size]:
-                _set[size].add(cur_x)
-                #st += graph[cur_x]
-                st.extend(graph[cur_x])
-            if cur_y not in _set[size]:
-                _set[size].add(cur_y)
-                #st += graph[cur_y]
-                st.extend(graph[cur_y])
+group = [ [] for _ in range(len(val)) ]
+roots = []
+for i in range(len(val)):
+    if find(i) == i:
+        roots.append(i)
     else:
-        _count[parent[i]] += 1
+        _count[find(i)] += _count[i]
+    group[find(i)].append(val[i])
 
-_heap = [ list(_set[i]) for i in range(size+1) ]
-for i in range(size+1):
-    heapq.heapify(_heap[i])
+for root in roots:
+    _sum-=sum(sorted(group[root])[:_count[root]])
 
-width_sum = 0
-for i in range(size+1):
-    for iter in range(_count[i]):
-        width_sum += heapq.heappop(_heap[i])
-
-print(_sum - width_sum)
+print(_sum)
