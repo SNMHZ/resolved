@@ -33,9 +33,4 @@
 |1654|이분탐색 활용|
 |10830,11444|이분 matrix곱, matrix제곱.|
 |14433|이분 매칭|
-
-<br><br>
-
----
-
-[![Solved.ac](http://mazassumnida.wtf/api/v2/generate_badge?boj=snmhz325)](https://solved.ac/snmhz325)
+|2042|세그먼트 트리|

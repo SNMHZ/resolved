@@ -1,4 +1,4 @@
-#으악 귀찮아
+#으악 귀찮아~
 import sys
 
 N, K = map(int, sys.stdin.readline().split())
