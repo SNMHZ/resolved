@@ -37,6 +37,8 @@ int main()
 			s = (s + q * b) % MM;
 			q = p*q % MM;
 		}
+		printf("%d\n", i);
+		printf("%d %d\n", r, s);
 		assert( r == s );
 	}
 	return 0;
