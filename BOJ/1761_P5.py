@@ -21,4 +21,4 @@ def union(x, y):
         parent[x] = y
     else:
         parent[y] = x
-
+ 
