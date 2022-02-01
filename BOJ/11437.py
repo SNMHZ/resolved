@@ -12,34 +12,37 @@ for _ in range(N-1):
     child[b-1].append(a-1)
 
 root = 0
-max_depth = 1
+# max_depth = 1
 depth[root] = 1
-# st = [root]
-# depth[root] = 1
-# 
-# while st:
-#     node = st.pop()
-#     max_depth = max(max_depth, depth[node])
-#     for i in child[node]:
-#         if depth[i] == -1:
-#             st.append(i)
-#             parent[i].append(node)
-#             depth[i] = depth[node] + 1
+st = [root]
+depth[root] = 1
 
-def dfs(node):
-    global max_depth
-    max_depth = max(max_depth, depth[node])
+while st:
+    node = st.pop()
+    # max_depth = max(max_depth, depth[node])
     for i in child[node]:
         if depth[i] == -1:
+            st.append(i)
             parent[i].append(node)
             depth[i] = depth[node] + 1
-            # print(node, parent)
-            dfs(i)
 
-dfs(0)
-table_max = math.ceil(math.log(max_depth, 2))*2
+# def dfs(node):
+#     # 이거 빼니까 메모리 안터짐... 이유는 모르겠음
+#     # global max_depth
+#     # max_depth = max(max_depth, depth[node])
+#     for i in child[node]:
+#         if depth[i] == -1:
+#             parent[i].append(node)
+#             depth[i] = depth[node] + 1
+#             # print(node, parent)
+#             dfs(i)
+# dfs(0)
 
-del child
+table_max = math.ceil(math.log(N, 2))
+
+# gc.collect() 호출해야 메모리에서 지워지는듯
+# del child
+# gc.collect()
 parent[root].append(root)
 for k in range(1, table_max):
     for i in range(N):

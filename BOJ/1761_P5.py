@@ -19,6 +19,6 @@ def union(x, y):
         return
     if parent[x] < parent[y]:
         parent[x] = y
-    else:
+    else: 
         parent[y] = x
   
