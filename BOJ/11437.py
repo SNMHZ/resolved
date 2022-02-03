@@ -1,6 +1,5 @@
 import sys
 import math
-sys.setrecursionlimit(100000)
 
 N = int(sys.stdin.readline())
 child = [[] for _ in range(N)]
@@ -12,14 +11,13 @@ for _ in range(N-1):
     child[b-1].append(a-1)
 
 root = 0
-# max_depth = 1
+max_depth = 1
 depth[root] = 1
 st = [root]
-depth[root] = 1
 
 while st:
     node = st.pop()
-    # max_depth = max(max_depth, depth[node])
+    max_depth = max(max_depth, depth[node])
     for i in child[node]:
         if depth[i] == -1:
             st.append(i)
@@ -38,7 +36,7 @@ while st:
 #             dfs(i)
 # dfs(0)
 
-table_max = math.ceil(math.log(N, 2))
+table_max = math.ceil(math.log(max_depth, 2))
 
 # gc.collect() 호출해야 메모리에서 지워지는듯
 # del child
