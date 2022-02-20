@@ -20,7 +20,7 @@ while st:
     for dy, dx in ( (1, 0), (-1, 0), (0, 1), (0, -1) ):
         ny, nx = y+dy, x+dx
         if 0 <= ny < R and 0 <= nx < C and not mask&loc(ny, nx):
-            if visited[ny][nx] ^ (mask|(loc(ny, nx))):
+            if visited[ny][nx] != (mask|(loc(ny, nx))):
                 visited[ny][nx] = (mask|(loc(ny, nx)))
                 st.append( ( ny, nx, mask|(loc(ny, nx) ), depth+1 ) )
 
