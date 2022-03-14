@@ -22,9 +22,9 @@ m3 = cnt_atoms(m3)
 for x in range(1, 11):
     for y in range(1, 11):
         for z in range(1, 11):
-            if m1[0]*x + m2[0]*y == m3[0]*z:
-                if m1[1]*x + m2[1]*y == m3[1]*z:
-                    if m1[2]*x + m2[2]*y == m3[2]*z:
-                        print(x, y, z)
-                        sys.exit(0)
+            if m1[0]*x + m2[0]*y == m3[0]*z and \
+               m1[1]*x + m2[1]*y == m3[1]*z and \
+               m1[2]*x + m2[2]*y == m3[2]*z:
+                print(x, y, z)
+                sys.exit(0)
 print('NEMOGUCE')

@@ -12,7 +12,7 @@ for i in range(N):
     start, path, p, f, s, v, val = st[i]
     print(bin(path), p, f, s, v, val)
 
-while st:
+while st: 
     start, path, p, f, s, v, val = st.pop()
     print(bin(path))
     if p >= mp and f >= mf and s >= ms and v >= mv:
