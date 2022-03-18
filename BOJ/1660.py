@@ -18,9 +18,8 @@ dp[0] = 0
 for a in arr[::-1]:
     dp[a] = 1
     for i in range(a, N+1):
-        if dp[i] != -1:
-            if i+a <= N:
-                dp[i+a] = min(dp[i] + 1, dp[i+a])
+        if i+a <= N:
+            dp[i+a] = min(dp[i] + 1, dp[i+a])
 
 print(dp[N])
 
@@ -34,5 +33,3 @@ print(dp[N])
 #     for a in arr:
 #         if cur+a <= N:
 #             q.append((cur+a, depth+1))
-
-# print(q)
