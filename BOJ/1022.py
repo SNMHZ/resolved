@@ -45,19 +45,19 @@ def fill_shell(i):
     cur_y = cur_y - move_n + 1
     num += move_n
 
-    # 왼
+    # 위
     cur_x = cur_x - 1
     fill_row(cur_y, cur_x, cur_x-move_n, num)
     cur_x = cur_x - move_n + 1
     num += move_n
 
-    # 아래
+    # 왼
     cur_y = cur_y + 1
     fill_col(cur_x, cur_y, cur_y+move_n, num)
     cur_y = cur_y + move_n - 1
     num += move_n
 
-    # 위
+    # 아래
     cur_x = cur_x + 1
     fill_row(cur_y, cur_x, cur_x+move_n, num)
     cur_x = cur_x + move_n - 1
