@@ -8,7 +8,7 @@ rooms = []
 lessons.sort(key=lambda x: x[0])
 
 for i in range(N):
-    if len(rooms) != 0 and rooms[0]<= lessons[i][0]:
+    if len(rooms) != 0 and rooms[0] <= lessons[i][0]:
         heapq.heappop(rooms)
     heapq.heappush(rooms, lessons[i][1])
 
